@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./content/bootstrap.min.css">
+    <link rel="stylesheet" href="./content/style.css">
+    <title>Countdown</title>
+</head><body>
+    <div id="flash"></div>
+
+    <div class="container">
+
+        <h1>Countdown</h1>
+
+		<!-- Clock screen -->
+		<div class="screen">
+			<div class="row">
+				<div class="col-sm">
+					<label class="image">
+						<input id="input1" type="file" onchange="readURL('#image1', this);" style="display: none;"/>
+						<img class="imagebox" id="image1" src="content/blank.png" alt="your image" />
+					</label>
+				</div>
+				<div class="col-sm-5">
+					<div id="clock">
+						<canvas id="clock-canvas" width="250px" height="250px"></canvas>
+					</div>
+					<div id="digitalclock">30</div>
+				</div>
+				<div class="col-sm">
+					<label class="image">
+						<input id="input2" type="file" onchange="readURL('#image2', this);" style="display: none;"/>
+						<img class="imagebox" id="image2" src="content/blank.png" alt="your image" />
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm">
+					<div class="playerbox">
+						<textarea rows="1" id="player1" class="player name" placeholder="Player 1" spellcheck="false"></textarea>
+						<br>
+						<div id="score1" onmousedown="scoreChange('1', event.which)" class="player score">0</div>
+					</div>
+				</div>
+				<div class="col-sm-5">
+					<div id="letters-game" style="display: block;">
+						<div class="tiles">
+							<div class="tile-border">
+								<div class="letter tile" id="letter1"></div>
+								<div class="letter tile" id="letter2"></div>
+								<div class="letter tile" id="letter3"></div>
+								<div class="letter tile" id="letter4"></div>
+								<div class="letter tile" id="letter5"></div>
+								<div class="letter tile" id="letter6"></div>
+								<div class="letter tile" id="letter7"></div>
+								<div class="letter tile" id="letter8"></div>
+								<div class="letter tile" id="letter9"></div>
+							</div>
+							<br>
+							<div class="tile-border" id="selectionbox" style="display: none;">
+								<div class="letterbox" id="vowelbox">Vowel</div>
+								<div class="letterbox" id="vowelnum"></div>
+								<div class="letterbox" id="consonantnum"></div>
+								<div class="letterbox" id="consonantbox">Consonant</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="numbers-game" style="display: none;">
+						<div id="number-target-box">
+							<div id="numbers-target">000</div>
+						</div>
+
+						<div class="tiles">
+							<div class="tile-border">
+								<div class="number tile" id="number1"></div>
+								<div class="number tile" id="number2"></div>
+								<div class="number tile" id="number3"></div>
+								<div class="number tile" id="number4"></div>
+								<div class="number tile" id="number5"></div>
+								<div class="number tile" id="number6"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="playerbox">
+						<textarea rows="1" id="player2" class="player name" placeholder="Player 2" spellcheck="false"></textarea>
+						<br>
+						<div id="score2" onmousedown="scoreChange('2', event.which)" class="player score">0</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Game type switch -->
+		<div class="row">
+			<div class="container" id="startup">
+				<div class="btn-group">
+					<button class="btn btn-info" id="start-one-button">Player 1 First</button>
+					<button class="btn btn-primary" id="coin">Coin</button>
+					<button class="btn btn-info" id="start-two-button">Player 2 First</button>
+				</div>
+				<br>
+			</div>
+			<div class="col-sm" id="main-buttons" style="display: none;">
+				<div class="btn-group">
+					<button class="btn btn-primary" id="letters-switch">Letters</button>
+					<button class="btn btn-light" id="numbers-switch">Numbers</button>
+					<button class="btn btn-light" id="conundrum-switch">Conundrum</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Game switches -->
+		<div class="row">
+			<!-- Letter buttons -->
+			<div id="letter-buttons" class="col-sm" style="display: none;">
+				<div class="btn-group">
+					<button class="btn btn-light" id="vowel-button">Vowel</button>
+					<button class="btn btn-light" id="consonant-button">Consonant</button>
+				</div>
+				<button class="btn btn-danger" id="letters-reset-button">Reset</button>
+			</div>
+			
+			<!-- Conundrum buttons -->
+			<div id="conundrum-buttons" class="col-sm" style="display: none;">
+				<button class="btn btn-info" id="conundrum-button">Generate</button>
+				<div class="btn-group" style="display: none;">
+					<button class="btn btn-light" id="conundrum-correct">Y</button>
+					<button class="btn btn-light" id="conundrum-incorrect">N</button>
+				</div>
+				<button class="btn btn-danger" id="conundrum-reset-button">Reset</button>
+			</div>
+
+			<!-- Number buttons -->
+			<div id="number-buttons" class="col-sm" style="display: none;">
+				<button class="btn btn-info" id="target-generator-btn">Target</button>
+				<div class="btn-group">
+					<button class="btn btn-light" id="0large">0 large</button>
+					<button class="btn btn-light" id="1large">1 large</button>
+					<button class="btn btn-light" id="2large">2 large</button>
+					<button class="btn btn-light" id="3large">3 large</button>
+					<button class="btn btn-light" id="4large">4 large</button>
+				</div>
+				<button class="btn btn-danger" id="numbers-reset-button">Reset</button>
+			</div>
+		</div>
+
+		<!-- Clock switches -->
+		<div id="switches" style="display: none;">
+			<div id="timer-controls" class="btn-group">
+				<button class="btn btn-primary" id="clock-start">Start clock</button>
+				<button class="btn btn-light" id="clock-pauseresume">Pause clock</button>
+			</div>
+			<button class="btn btn-danger" disabled="" id="halt-clock">End</button>
+		</div>
+
+		<!-- Game tracker -->
+		<div id="game_tracker" style="display: none;">
+			<div class="btn-group">
+				<button class="btn btn-light" id="round1" disabled="">L</button>
+				<button class="btn btn-light" id="round2" disabled="">L</button>
+				<button class="btn btn-light" id="round3" disabled="">N</button>
+				<button class="btn btn-light" id="round4" disabled="">L</button>
+				<button class="btn btn-light" id="round5" disabled="">L</button>
+				<button class="btn btn-light" id="round6" disabled="">N</button>
+				<button class="btn btn-light" id="round7" disabled="">L</button>
+				<button class="btn btn-light" id="round8" disabled="">L</button>
+				<button class="btn btn-light" id="round9" disabled="">N</button>
+				<button class="btn btn-light" id="round10" disabled="">L</button>
+				<button class="btn btn-light" id="round11" disabled="">L</button>
+				<button class="btn btn-light" id="round12" disabled="">L</button>
+				<button class="btn btn-light" id="round13" disabled="">L</button>
+				<button class="btn btn-light" id="round14" disabled="">N</button>
+				<button class="btn btn-light" id="round15" disabled="">C</button>
+			</div>
+			<button class="btn btn-primary" id="next-round">Next</button>
+		</div>
+    </div>
+
+    <audio src="./content/countdown.mp3" id="music"></audio>
+
+    <script src="./content/jquery.min.js"></script>
+    <script src="./content/helpers.js"></script>
+    <script src="./content/dictionary.js"></script>
+    <script src="./content/cntdn.js"></script>
+    <script src="./content/conundrum-data.js"></script>
+    <script src="./content/conundrum.js"></script>
+    <script src="./content/practice.js"></script>
+
+</body></html>
