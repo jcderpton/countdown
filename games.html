@@ -4,17 +4,12 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" href="./content/bootstrap.min.css">
-		<link rel="stylesheet" href="./content/style.css">
-		<title>SBG Data Does Countdown</title>
+		<link rel="stylesheet" href="./content/games.css">
+		<title>Countdown Games</title>
 	</head>
 	<body>
-		<br>
-		<br>
-		<br>
-		<!-- <h1>SBG Data Does Countdown</h1> -->
-		
 		<!-- Game tracker -->
-		<div class="tiles" style="display: none;">
+		<div class="tiles">
 			<div class="tile-border" id="game-tracker">
 				<div class="tile round-tile" id="round1">L</div>
 				<div class="tile round-tile" id="round2">L</div>
@@ -33,51 +28,11 @@
 				<div class="tile round-tile" id="round15">C</div>
 			</div>
 		</div>
-
-		<!-- Clock screen -->
-		<div class="screen">
-			<div class="row">
-				<div class="col">
-					<div class="playerbox">
-						<label class="image">
-							<input id="input1" type="file" onchange="readURL('#image1', this);" style="display: none;"/>
-							<img class="player image" id="image1" src="content/blank.png" alt="your image" />
-						</label>
-						<textarea rows="1" id="player1" class="player name" placeholder="Player 1" spellcheck="false"></textarea>
-						<div id="score1" onmousedown="scoreChange('1', event.which)" class="player score">0</div>
-					</div>
-				</div>
-			
-				<div class="col">
-					<div id="clock">
-						<canvas id="clock-canvas" width="350px" height="350px"></canvas>
-					</div>
-					<div id="digitalclock">30</div>
-					
-					<div id="startup" style="display: none;">
-						<button class="btn btn-primary" id="coin">Coin</button>
-					</div>
-				</div>
-				
-				<div class="col">
-					<div class="playerbox">
-						<label class="image">
-							<input id="input2" type="file" onchange="readURL('#image2', this);" style="display: none;"/>
-							<img class="player image" id="image2" src="content/blank.png" alt="your image" />
-						</label>
-						<textarea rows="1" id="player2" class="player name" placeholder="Player 2" spellcheck="false"></textarea>
-						<div id="score2" onmousedown="scoreChange('2', event.which)" class="player score">0</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Game boxes -->
-		<div class="row">
 		
+		<div class="left_game_box">
 			<!-- Letters game -->
-			<div class="gamebox" id="letters-game" style="display: none;">
-				<div id="letters-inner">
+			<div class="gamebox">
+				<div class="letters_inner">
 					<div class="tiles">
 						<div class="tile-border">
 							<div class="tile" id="letter1"></div>
@@ -111,14 +66,21 @@
 					</div>
 				</div>
 			</div>
-
+			
+			<!-- <div class="playerbox">
+				<textarea rows="1" id="player1" class="player name" placeholder="Player 1" spellcheck="false"></textarea>
+				<div id="score1" onmousedown="scoreChange('1', event.which)" class="player score">0</div>
+			</div>
+			<br> -->
+			
+			<br>
+		
 			<!-- Numbers game -->
-			<div class="gamebox" id="numbers-game" style="display: none;">
-				<div id="numbers-inner">
-					<div id="number-target-box" >
-						<div id="numbers-target">000</div>
+			<div class="gamebox">
+				<div class="numbers_inner">
+					<div id="number-target-box" class="targetbox">
+						<div id="numbers-target" class="target">000</div>
 					</div>
-					<!-- <canvas id="target-button" width="50px" height="50px"></canvas> -->
 					<div class="tiles">
 						<div class="tile-border">
 							<div class="number tile" id="number1"></div>
@@ -131,21 +93,44 @@
 					</div>
 				</div>
 			</div>
-			
-			<!-- Conundrum game -->
-			<div class="gamebox" id="conundrum-game">
-				<div class="tiles">
-					<div class="tile-border" id="conundrum-box">
-						<div class="tile filled-tile" id="conundrum1">C</div>
-						<div class="tile filled-tile" id="conundrum2">O</div>
-						<div class="tile filled-tile" id="conundrum3">U</div>
-						<div class="tile filled-tile" id="conundrum4">N</div>
-						<div class="tile filled-tile" id="conundrum5">T</div>
-						<div class="tile filled-tile" id="conundrum6">D</div>
-						<div class="tile filled-tile" id="conundrum7">O</div>
-						<div class="tile filled-tile" id="conundrum8">W</div>
-						<div class="tile filled-tile" id="conundrum9">N</div>
-					</div>
+			<!-- <div class="playerbox">
+				<textarea rows="1" id="player2" class="player name" placeholder="Player 2" spellcheck="false"></textarea>
+				<div id="score2" onmousedown="scoreChange('2', event.which)" class="player score">0</div>
+			</div> -->
+		</div>
+		
+		<div class="right_game_box">
+			<!-- Clock -->
+			<div id="clock">
+				<canvas id="clock-canvas" width="600px" height="600px"></canvas>
+			</div>
+		</div>
+		
+		<!-- Bottom panel -->
+		<div class="bottom-panel">
+			<div class="targetbox large" id="display-target-box" style="display: none;">
+				<div id="display-target" class="target large">000</div>
+			</div>
+			<br>
+			<div class="conundrum_box">
+				<div id="letter_display">
+					<div class="tile big-tile" id="panel1">C</div>
+					<div class="tile big-tile" id="panel2">O</div>
+					<div class="tile big-tile" id="panel3">U</div>
+					<div class="tile big-tile" id="panel4">N</div>
+					<div class="tile big-tile" id="panel5">T</div>
+					<div class="tile big-tile" id="panel6">D</div>
+					<div class="tile big-tile" id="panel7">O</div>
+					<div class="tile big-tile" id="panel8">W</div>
+					<div class="tile big-tile" id="panel9">N</div>
+				</div>
+				<div id="number_display" style="display: none;">
+					<div class="tile big-num-tile" id="pnum1">100</div>
+					<div class="tile big-num-tile" id="pnum2">75</div>
+					<div class="tile big-num-tile" id="pnum3">50</div>
+					<div class="tile big-num-tile" id="pnum4">25</div>
+					<div class="tile big-num-tile" id="pnum5">10</div>
+					<div class="tile big-num-tile" id="pnum6">8</div>
 				</div>
 			</div>
 		</div>
@@ -153,11 +138,12 @@
 		<audio src="./content/countdown.mp3" id="music"></audio>
 		
 		<script src="./content/jquery.min.js"></script>
-		<script src="./content/helpers.js"></script>
 		<script src="./content/dictionary.js"></script>
-		<script src="./content/cntdn.js"></script>
 		<script src="./content/conundrum-data.js"></script>
 		<script src="./content/conundrum.js"></script>
-		<script src="./content/practice.js"></script>
+		<script src="./content/clock.js"></script>
+		<script src="./content/cntdn.js"></script>
+		<script src="./content/games.js"></script>
+		<!-- <script src="./content/score.js"></script> -->
 	</body>
 </html>

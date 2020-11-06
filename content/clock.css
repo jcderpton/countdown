@@ -1,0 +1,68 @@
+body {
+    background: #ccdbe8;
+    text-align: center;
+    overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.screen {
+    display: table;
+	padding: 10px;
+    margin: 10px auto;
+	border: 10px solid rgb(127, 127, 127);
+    background: radial-gradient(#ffffdc, rgb(18, 69, 155));
+}
+
+.panel-outer{
+	display: table;
+	margin: auto;
+	padding: 45px;
+	background-color: rgb(18, 69, 155);
+	border: 15px solid rgb(127, 127, 127);
+	box-shadow: inset 2px 2px 5px rgba(0,0,0,0.9);
+}
+
+.host-box {
+	float: left;
+	width: 640px;
+	height: 480px;
+	background-color: black;
+	border: 15px solid rgb(28, 103, 175);
+	box-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+}
+
+.playerbox {
+	margin: 20px;
+	padding: 20px;
+	display: inline-block;
+	background-color: rgb(18, 69, 155);
+	border: 15px solid rgb(127, 127, 127);
+	box-shadow: inset 2px 2px 5px rgba(0,0,0,0.9);
+}
+
+.player {
+    font-family: monospace;
+	font-size: 25px;
+	margin: auto;
+}
+
+.player.name {
+	border-top: solid 5px white;
+    border-bottom: solid 5px white;
+    color: white;
+    background: #345b9f;
+	text-align: center;
+	resize: none;
+	margin-top: 20px;
+}
+
+.player.score {
+	border: solid 5px black;
+    color: white;
+    background-color: rgb(45, 57, 205);
+    width: 3em;
+	font-size: 30px;
+	text-align: right;
+	margin-top: 10px;
+}
